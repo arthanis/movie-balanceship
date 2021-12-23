@@ -48,7 +48,6 @@ export default {
       const { userIndex, runtime } = event;
 
       this.summary[userIndex].runtime += runtime;
-      console.log(userIndex, runtime);
     },
     convertedRuntime(runtime) {
       const hours = Math.floor(runtime / 60);
