@@ -1,0 +1,23 @@
+.main {
+    // padding: 90px 0 0 280px;
+
+    .page-title {
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .content__title {
+        display: inline-block;
+        padding-bottom: 5px;
+        border-bottom: 4px solid $primary;
+        color: #fff;
+        font-weight: 600;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .main {
+        padding-top: $header-desktop-size + 30px;
+        padding-left: $sidebar-desktop-size + 30px;
+    }
+}

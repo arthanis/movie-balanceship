@@ -1,0 +1,32 @@
+.app {
+    border-top: 5px solid rgb(40, 171, 194);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    background: $primary;
+
+    .header__left {
+        display: flex;
+        align-items: center;
+        width: $sidebar-desktop-size;
+        height: 60px;
+        padding-left: 30px;
+        background: #f83745;
+    }
+
+    // .header__right {}
+
+    .header__title {
+        margin-bottom: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: $white;
+    }
+}
