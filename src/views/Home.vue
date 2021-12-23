@@ -1,15 +1,17 @@
 <template>
   <div class="content-wrapper">
     <div v-for="(user, userIndex) in users" :key="`user_${userIndex}`" class="content mb-4">
-      <h2 class="content__title">{{user.name}}</h2>
+      <h2 class="content__title mb-3">{{user.name}}</h2>
 
-      <Card
-        v-for="(item, itemIndex) in user.items"
-        :apikey="API_KEY"
-        :user="user"
-        :item="item"
-        :key="itemIndex"
-      />
+      <div class="row">
+        <div class="col-3 col-lg-2 col-xxl-1" v-for="(item, index) in user.items" :key="index">
+          <Card
+            :apikey="API_KEY"
+            :user="user"
+            :item="item"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
