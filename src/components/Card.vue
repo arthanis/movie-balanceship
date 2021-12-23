@@ -30,6 +30,9 @@ export default {
     apikey: {
       type: String,
     },
+    userIndex: {
+      type: Number,
+    },
     user: {
       type: Object,
       default: () => {},
@@ -71,6 +74,7 @@ export default {
 
       if (this.type === 'movie') {
         this.runtime = Number(res.data.Runtime.split(' ')[0]);
+        this.$emit('runtime', { userIndex: this.userIndex, runtime: this.runtime });
       }
 
       if (this.type === 'series') {
@@ -89,6 +93,7 @@ export default {
                       : Number(episodeRes.data.Runtime.split(' ')[0]);
 
                     this.runtime += runtime;
+                    this.$emit('runtime', { userIndex: this.userIndex, runtime });
                   })
                   .catch((episodeErr) => console.error(episodeErr));
               }

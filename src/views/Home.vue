@@ -1,14 +1,18 @@
 <template>
-  <div class="content-wrapper">
+  <div class="content-wrapper" v-if="summary.length">
     <div v-for="(user, userIndex) in users" :key="`user_${userIndex}`" class="content mb-4">
-      <h2 class="content__title mb-3">{{user.name}}</h2>
+      <h2 class="content__title mb-3">
+        {{user.name}} - {{ convertedRuntime(summary[userIndex].runtime) }}
+      </h2>
 
       <div class="row">
         <div class="col-3 col-lg-2 col-xxl-1" v-for="(item, index) in user.items" :key="index">
           <Card
             :apikey="API_KEY"
             :user="user"
+            :userIndex="userIndex"
             :item="item"
+            @runtime="handleSummary($event)"
           />
         </div>
       </div>
@@ -37,33 +41,21 @@ export default {
     };
   },
   mounted() {
-    // this.data.forEach((user, index) => {
-    //   const data = [];
+    this.summary = this.users.map((user) => ({ userId: user.id, runtime: 0 }));
+  },
+  methods: {
+    handleSummary(event) {
+      const { userIndex, runtime } = event;
 
-    //   console.log(user);
-    //   console.log(user.name);
-    //   this.convertedUsers[index] = {
-    //     name: user.name,
-    //     watchedMoviesAndSeries: [],
-    //   };
+      this.summary[userIndex].runtime += runtime;
+      console.log(userIndex, runtime);
+    },
+    convertedRuntime(runtime) {
+      const hours = Math.floor(runtime / 60);
+      const minutes = runtime % 60;
 
-    //   if (user.watchedMoviesAndSeries.length) {
-    //     user.watchedMoviesAndSeries.forEach((elem) => {
-    //       const res = axios.get(`http://www.omdbapi.com/?i=${elem.id}&apikey=${this.API_KEY}`);
-
-    //       data.push(res);
-    //     });
-    //   }
-
-    //   Promise.all(data)
-    //     .then((responses) => {
-    //       console.log(responses);
-    //       responses.forEach((res) => {
-    //         this.convertedUsers[index].watchedMoviesAndSeries.push(res.data);
-    //         console.log(res);
-    //       });
-    //     });
-    // });
+      return `${hours} óra ${minutes} perc`;
+    },
   },
 };
 </script>
