@@ -12,11 +12,6 @@
       <i class="bi bi-star-fill text-warning"></i>
       <span class="ms-2">{{ imdbRating }}</span>
     </p>
-
-    <div class="d-none">
-      <div class="mt-5">{{ item }}</div>
-      <div>{{user}}</div>
-    </div>
   </div>
 </template>
 
